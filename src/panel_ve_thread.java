@@ -1,11 +1,14 @@
 import javax.swing.*;
+import java.awt.color.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class panel_ve_thread extends JFrame implements Runnable,KeyListener,MouseListener,MouseMotionListener {
+public class panel_ve_thread extends JPanel implements Runnable,KeyListener,MouseListener,MouseMotionListener {
 
+
+		private int WIDTH =1000,HEIGHT =720;
 
         private Thread thread;
 
@@ -62,7 +65,7 @@ public class panel_ve_thread extends JFrame implements Runnable,KeyListener,Mous
 
 
         private void draw() {
-
+        	
         }
 
         private void drawToScreen() {
