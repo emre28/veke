@@ -16,6 +16,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
         private Graphics2D g;
 
         public panel_ve_thread(){
+        	
             setPreferredSize(new Dimension(WIDTH,HEIGHT));
             setFocusable(true);
             requestFocus();
@@ -65,6 +66,8 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
 
 
         private void draw() {
+       g.setColor(Color.WHITE);
+       g.fillOval(450, 300, 100, 120);
         	
         }
 
