@@ -8,7 +8,7 @@ import java.io.IOException;
 public class panel_ve_thread extends JPanel implements Runnable,KeyListener,MouseListener,MouseMotionListener {
 
 
-		private int WIDTH =1000,HEIGHT =720;
+		private int WIDTH =720,HEIGHT =520;
 
         private Thread thread;
 
