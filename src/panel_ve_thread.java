@@ -2,9 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Random;
 
@@ -14,6 +12,8 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
 		private int WIDTH =720,HEIGHT =520;
 		private Boolean oyuna_devam_et = true;
         private int random_deger;
+        private int seviye = 1;
+        private int top_sayisi = 5;
         private Color yuvarlak_rengi;
         private int tik=0;
 
@@ -52,17 +52,18 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
         private Color kucuk_yuvarlak_5_renk;
         private Boolean kucuk_yuvarlak_5_ciz = true;
         private Rectangle kucuk_yuvarlak_5;
-        
-        private int artis_x = 1;
-        private int artis_y = 1;
-        private int artis_x_2 = 1;
-        private int artis_y_2 = 1;
-        private int artis_x_3 = 1;
-        private int artis_y_3 = 1;
-        private int artis_x_4 = 1;
-        private int artis_y_4 = 1;
-        private int artis_x_5 = 1;
-        private int artis_y_5 = 1;
+
+        private int top_hizi = 5;
+        private int artis_x = top_hizi;
+        private int artis_y = top_hizi;
+        private int artis_x_2 = top_hizi;
+        private int artis_y_2 = top_hizi;
+        private int artis_x_3 = top_hizi;
+        private int artis_y_3 = top_hizi;
+        private int artis_x_4 = top_hizi;
+        private int artis_y_4 = top_hizi;
+        private int artis_x_5 = top_hizi;
+        private int artis_y_5 = top_hizi;
 
         private Thread thread;
         Random r = new Random();
@@ -74,6 +75,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
             setPreferredSize(new Dimension(WIDTH,HEIGHT));
             setFocusable(true);
             requestFocus();
+            seviye = 1;
             yuvarlak_rengi = Color.GREEN;
             kucuk_yuvarlak_1_renk = Color.BLACK;
             kucuk_yuvarlak_2_renk = Color.RED;
@@ -82,6 +84,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
             kucuk_yuvarlak_5_renk = Color.GREEN;
             
             try {
+
                 arkaplan = ImageIO.read(getClass().getResource("arkaplan.png"));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -104,7 +107,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
             while(true) {
             	if(oyuna_devam_et){
                 tik++;
-                if(tik % 300 == 0){
+                if(tik % 100 == 0){
                     yuvarlak_rengi = rastgele_renk();
                     kucuk_yuvarlak_1_renk = rastgele_renk();
                     kucuk_yuvarlak_2_renk = rastgele_renk();
@@ -121,72 +124,72 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
                 kucuk_yuvarlak_4 = new Rectangle(kucuk_yuvarlak_x_4,kucuk_yuvarlak_y_4,20,20);
                 kucuk_yuvarlak_5 = new Rectangle(kucuk_yuvarlak_x_5,kucuk_yuvarlak_y_5,20,20);
                 if(kucuk_yuvarlak_x_1 > 700){
-                	artis_x = -1;
+                	artis_x = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_1 > 500){
-                	artis_y = -1;
+                	artis_y = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_1 < 0){
-                	artis_y = +1;
+                	artis_y = +top_hizi;
                 }
                 else if(kucuk_yuvarlak_x_1 < 0){
-                	artis_x = +1;
+                	artis_x = +top_hizi;
                 }
                 kucuk_yuvarlak_x_2+=artis_x_2;
                 kucuk_yuvarlak_y_2+=artis_y_2;
                 if(kucuk_yuvarlak_x_2 > 700){
-                	artis_x_2 = -1;
+                	artis_x_2 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_2 > 500){
-                	artis_y_2 = -1;
+                	artis_y_2 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_2 < 0){
-                	artis_y_2 = +1;
+                	artis_y_2 = +top_hizi;
                 }
                 else if(kucuk_yuvarlak_x_2 < 0){
-                	artis_x_2 = +1;
+                	artis_x_2 = +top_hizi;
                 }
                 kucuk_yuvarlak_x_3+=artis_x_3;
                 kucuk_yuvarlak_y_3+=artis_y_3;
                 if(kucuk_yuvarlak_x_3 > 700){
-                	artis_x_3 = -1;
+                	artis_x_3 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_3 > 500){
-                	artis_y_3 = -1;
+                	artis_y_3 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_3 < 0){
-                	artis_y_3 = +1;
+                	artis_y_3 = +top_hizi;
                 }
                 else if(kucuk_yuvarlak_x_3 < 0){
-                	artis_x_3 = +1;
+                	artis_x_3 = +top_hizi;
                 }
                 kucuk_yuvarlak_x_5+=artis_x_5;
                 kucuk_yuvarlak_y_5+=artis_y_5;
                 if(kucuk_yuvarlak_x_5 > 700){
-                	artis_x_5 = -1;
+                	artis_x_5 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_5 > 500){
-                	artis_y_5 = -1;
+                	artis_y_5 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_5 < 0){
-                	artis_y_5 = +1;
+                	artis_y_5 = +top_hizi;
                 }
                 else if(kucuk_yuvarlak_x_5 < 0){
-                	artis_x_5 = +1;
+                	artis_x_5 = +top_hizi;
                 }
                 kucuk_yuvarlak_x_4+=artis_x_4;
                 kucuk_yuvarlak_y_4+=artis_y_4;
                 if(kucuk_yuvarlak_x_4 > 700){
-                	artis_x_4 = -1;
+                	artis_x_4 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_4 > 500){
-                	artis_y_4 = -1;
+                	artis_y_4 = -top_hizi;
                 }
                 else if(kucuk_yuvarlak_y_4 < 0){
-                	artis_y_4 = +1;
+                	artis_y_4 = +top_hizi;
                 }
                 else if(kucuk_yuvarlak_x_4 < 0){
-                	artis_x_4 = +1;
+                	artis_x_4 = +top_hizi;
                 }
                 
                 
@@ -194,6 +197,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
                 	if(yuvarlak_rengi == kucuk_yuvarlak_1_renk){
                 		kucuk_yuvarlak_1_ciz = false;
                 		kucuk_yuvarlak_x_1 = 6000;
+                        top_sayisi--;
                 	}
                 	else{
                 		oyuna_devam_et = false;
@@ -203,6 +207,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
                 	if(yuvarlak_rengi == kucuk_yuvarlak_2_renk){
                 		kucuk_yuvarlak_2_ciz = false;
                 		kucuk_yuvarlak_x_2 = 6000;
+                        top_sayisi--;
                 	}
                 	else{
                 		oyuna_devam_et = false;
@@ -212,6 +217,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
                 	if(yuvarlak_rengi == kucuk_yuvarlak_3_renk){
                 		kucuk_yuvarlak_3_ciz = false;
                 		kucuk_yuvarlak_x_3 = 6000;
+                        top_sayisi--;
                 	}
                 	else{
                 		oyuna_devam_et = false;
@@ -221,6 +227,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
                 	if(yuvarlak_rengi == kucuk_yuvarlak_4_renk){
                 		kucuk_yuvarlak_4_ciz = false;
                 		kucuk_yuvarlak_x_4 = 6000;
+                        top_sayisi--;
                 	}
                 	else{
                 		oyuna_devam_et = false;
@@ -230,17 +237,19 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
                 	if(yuvarlak_rengi == kucuk_yuvarlak_5_renk){
                 		kucuk_yuvarlak_5_ciz = false;
                 		kucuk_yuvarlak_x_5 = 6000;
+                        top_sayisi--;
                 	}
                 	else{
                 		oyuna_devam_et = false;
                 	}
                 }
             	}
+
                 draw();
 
 
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(1000/30);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -272,8 +281,37 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
         private void draw() {
             g = getGraphics();
             g.drawImage(arkaplan,0,0,720,520,null);
-            g.setFont(new Font("Times New Roman" ,Font.BOLD,50));
+            g.setFont(new Font("Times New Roman", Font.BOLD,50));
+            if(top_sayisi == 2){
+                seviye++;
+                top_sayisi = 5;
+                kucuk_yuvarlak_1_ciz=true;
+                kucuk_yuvarlak_2_ciz=true;
+                kucuk_yuvarlak_3_ciz=true;
+                kucuk_yuvarlak_4_ciz=true;
+                kucuk_yuvarlak_5_ciz=true;
 
+                yuvarlak_x = 310;
+                yuvarlak_y = 210;
+
+
+                kucuk_yuvarlak_x_1 = 100;
+                kucuk_yuvarlak_y_1 = 120;
+
+                kucuk_yuvarlak_x_2 = 320;
+                kucuk_yuvarlak_y_2 = 480;
+                kucuk_yuvarlak_x_3 = 650;
+                kucuk_yuvarlak_y_3 = 400;
+                kucuk_yuvarlak_x_4 = 210;
+                kucuk_yuvarlak_y_4 = 295;
+
+                kucuk_yuvarlak_x_5 = 400;
+                kucuk_yuvarlak_y_5 = 112;
+
+                top_hizi++;
+
+            }
+            g.drawString(seviye + ". Seviye", 50, 50);
            
             g.setColor(yuvarlak_rengi);
             g.fillOval(yuvarlak_x, yuvarlak_y, 100, 100);
@@ -300,7 +338,7 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
             }
             if(!oyuna_devam_et){
              g.setColor(Color.BLACK);
-           	 g.drawString("Yandýnýz", 250, 250);
+           	 g.drawString("YandÄ±nÄ±z", 250, 250);
            }
         }
 
@@ -340,6 +378,9 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
         			
         				yuvarlak_x = 310;
         		        yuvarlak_y = 210;
+
+                        seviye = 1;
+                        top_hizi=5;
         		        
         		        kucuk_yuvarlak_x_1 = 100;
         		       kucuk_yuvarlak_y_1 = 120;
@@ -347,9 +388,9 @@ public class panel_ve_thread extends JPanel implements Runnable,KeyListener,Mous
      
         		        
         		         kucuk_yuvarlak_x_2 = 320;
-        		      kucuk_yuvarlak_y_2 = 480;
+        		        kucuk_yuvarlak_y_2 = 480;
         
-        		      kucuk_yuvarlak_2_ciz = true;
+                        kucuk_yuvarlak_2_ciz = true;
 
         		        
         		          kucuk_yuvarlak_x_3 = 650;
